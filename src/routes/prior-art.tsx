@@ -1,0 +1,3 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { ProductPlaceholder } from "@/components/landing/ProductPlaceholder";
+export const Route = createFileRoute("/prior-art")({ head:()=>({meta:[{title:"Prior-Art Discovery — IP-SAKTI"},{name:"description",content:"Research relevant Ayurveda patents and technical literature."},{property:"og:title",content:"Prior-Art Discovery — IP-SAKTI"},{property:"og:description",content:"Structured prior-art research for Ayurveda innovation."},{property:"og:type",content:"website"},{name:"twitter:card",content:"summary_large_image"}]}), component:()=> <ProductPlaceholder title="Prior-Art Discovery" description="The structured patent and research search experience is ready for its source connection."/> });

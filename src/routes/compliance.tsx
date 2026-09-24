@@ -1,0 +1,3 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { ProductPlaceholder } from "@/components/landing/ProductPlaceholder";
+export const Route = createFileRoute("/compliance")({ head:()=>({meta:[{title:"Compliance Guidance — IP-SAKTI"},{name:"description",content:"Build actionable Ayurveda regulatory roadmaps."},{property:"og:title",content:"Compliance Guidance — IP-SAKTI"},{property:"og:description",content:"Structured Ayurveda regulatory guidance."},{property:"og:type",content:"website"},{name:"twitter:card",content:"summary_large_image"}]}), component:()=> <ProductPlaceholder title="Compliance Guidance" description="The jurisdiction-aware compliance workspace is ready for its regulatory data connection."/> });
