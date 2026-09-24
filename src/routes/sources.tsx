@@ -1,0 +1,3 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { ProductPlaceholder } from "@/components/landing/ProductPlaceholder";
+export const Route = createFileRoute("/sources")({ head:()=>({meta:[{title:"Knowledge Base — IP-SAKTI"},{name:"description",content:"Explore the trusted sources behind IP-SAKTI guidance."},{property:"og:title",content:"Knowledge Base — IP-SAKTI"},{property:"og:description",content:"Traceable sources for Ayurveda IP and regulatory research."},{property:"og:type",content:"website"},{name:"twitter:card",content:"summary_large_image"}]}), component:()=> <ProductPlaceholder title="Knowledge Base" description="The verified source library is ready for curated documents and jurisdictional guidance."/> });

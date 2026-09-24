@@ -1,0 +1,3 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { ProductPlaceholder } from "@/components/landing/ProductPlaceholder";
+export const Route = createFileRoute("/assistant")({ head:()=>({meta:[{title:"AI Assistant — IP-SAKTI Sahayak"},{name:"description",content:"Ask multilingual intellectual-property and regulatory questions."},{property:"og:title",content:"AI Assistant — IP-SAKTI"},{property:"og:description",content:"Evidence-grounded Ayurveda IP intelligence."},{property:"og:type",content:"website"},{name:"twitter:card",content:"summary_large_image"}]}), component:()=> <ProductPlaceholder title="AI Assistant" description="The evidence-grounded assistant workspace is ready for its knowledge service connection."/> });
