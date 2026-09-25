@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AssistantRouteImport } from './routes/assistant'
 import { Route as ComplianceRouteImport } from './routes/compliance'
+import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as PriorArtRouteImport } from './routes/prior-art'
 import { Route as SourcesRouteImport } from './routes/sources'
 
@@ -30,6 +31,11 @@ const ComplianceRoute = ComplianceRouteImport.update({
   path: '/compliance',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PriorArtRoute = PriorArtRouteImport.update({
   id: '/prior-art',
   path: '/prior-art',
@@ -45,6 +51,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/assistant': typeof AssistantRoute
   '/compliance': typeof ComplianceRoute
+  '/dashboard': typeof DashboardRoute
   '/prior-art': typeof PriorArtRoute
   '/sources': typeof SourcesRoute
 }
@@ -52,6 +59,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/assistant': typeof AssistantRoute
   '/compliance': typeof ComplianceRoute
+  '/dashboard': typeof DashboardRoute
   '/prior-art': typeof PriorArtRoute
   '/sources': typeof SourcesRoute
 }
@@ -60,22 +68,42 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/assistant': typeof AssistantRoute
   '/compliance': typeof ComplianceRoute
+  '/dashboard': typeof DashboardRoute
   '/prior-art': typeof PriorArtRoute
   '/sources': typeof SourcesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/assistant' | '/compliance' | '/prior-art' | '/sources'
+  fullPaths:
+    | '/'
+    | '/assistant'
+    | '/compliance'
+    | '/dashboard'
+    | '/prior-art'
+    | '/sources'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/assistant' | '/compliance' | '/prior-art' | '/sources'
+  to:
+    | '/'
+    | '/assistant'
+    | '/compliance'
+    | '/dashboard'
+    | '/prior-art'
+    | '/sources'
   id:
-    '__root__' | '/' | '/assistant' | '/compliance' | '/prior-art' | '/sources'
+    | '__root__'
+    | '/'
+    | '/assistant'
+    | '/compliance'
+    | '/dashboard'
+    | '/prior-art'
+    | '/sources'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AssistantRoute: typeof AssistantRoute
   ComplianceRoute: typeof ComplianceRoute
+  DashboardRoute: typeof DashboardRoute
   PriorArtRoute: typeof PriorArtRoute
   SourcesRoute: typeof SourcesRoute
 }
@@ -103,6 +131,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ComplianceRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/prior-art': {
       id: '/prior-art'
       path: '/prior-art'
@@ -124,6 +159,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AssistantRoute: AssistantRoute,
   ComplianceRoute: ComplianceRoute,
+  DashboardRoute: DashboardRoute,
   PriorArtRoute: PriorArtRoute,
   SourcesRoute: SourcesRoute,
 }
