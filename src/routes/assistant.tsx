@@ -23,7 +23,7 @@ const SUGGESTED = [
   "What licence do I need to manufacture Ayurvedic medicine?",
 ];
 type DemoSource = { title: string; authority: string };
-type Msg = { role: "user" | "ai"; text: string; sources: DemoSource[] };
+type Msg = { role: "user" | "ai"; text: string; sources?: DemoSource[] };
 
 const DEMO: Record<string, { answer: string; sources: DemoSource[] }> = {
   "Can I patent an Ayurvedic herbal formulation?": {
