@@ -22,7 +22,53 @@ const SUGGESTED = [
   "How is traditional knowledge protected internationally?",
   "What licence do I need to manufacture Ayurvedic medicine?",
 ];
-type Msg = { role: "user" | "ai"; text: string };
+type DemoSource = { title: string; authority: string };
+type Msg = { role: "user" | "ai"; text: string; sources: DemoSource[] };
+
+const DEMO: Record<string, { answer: string; sources: DemoSource[] }> = {
+  "Can I patent an Ayurvedic herbal formulation?": {
+    answer:
+      "Patentability of an Ayurvedic herbal formulation depends on factors such as novelty, inventive step, and applicable exclusions under Indian patent law. Traditional knowledge and the nature of the formulation may also affect patentability.\n\nFor an actual assessment, the relevant patent provisions and applicable AYUSH/traditional-knowledge guidelines should be reviewed.",
+    sources: [
+      { title: "Patents Act, 1970", authority: "IP India" },
+      { title: "Guidelines for Examination of AYUSH Related Inventions", authority: "IP India" },
+      { title: "Guidelines for Processing of Patent Applications relating to Traditional Knowledge and Biological Material", authority: "IP India" },
+    ],
+  },
+  "What does Section 3(p) of the Patents Act cover?": {
+    answer:
+      "Section 3(p) of the Patents Act, 1970 excludes from patentability an invention which, in effect, is traditional knowledge or an aggregation or duplication of known properties of traditionally known component or components.\n\nIn practice, this means that a claim resting on traditional knowledge — or on a mere arrangement of known Ayurvedic ingredients — is likely to be refused, while a genuine technical advance over such knowledge may still be examined on its merits.",
+    sources: [
+      { title: "Patents Act, 1970 — Section 3(p)", authority: "IP India" },
+      { title: "Manual of Patent Office Practice and Procedure", authority: "IP India" },
+      { title: "Guidelines for Examination of AYUSH Related Inventions", authority: "IP India" },
+    ],
+  },
+  "How is traditional knowledge protected internationally?": {
+    answer:
+      "Internationally, traditional knowledge is addressed through a mix of instruments: the Nagoya Protocol on access and benefit-sharing, WIPO's ongoing work on genetic resources and traditional knowledge, and defensive databases such as the Traditional Knowledge Digital Library (TKDL) that help patent offices refuse invalid claims.\n\nProtection therefore tends to be preventive and documentation-based rather than a single global registration system.",
+    sources: [
+      { title: "WIPO — Traditional Knowledge", authority: "WIPO" },
+      { title: "Traditional Knowledge Digital Library (TKDL)", authority: "Government of India" },
+      { title: "Nagoya Protocol on Access and Benefit-sharing", authority: "CBD Secretariat" },
+    ],
+  },
+  "What licence do I need to manufacture Ayurvedic medicine?": {
+    answer:
+      "Manufacturing Ayurvedic medicines in India generally requires a licence from the State Licensing Authority under the Drugs and Cosmetics Act, 1940 and the Drugs and Cosmetics Rules, 1945, along with compliance with Schedule T good manufacturing practices for ASU drugs.\n\nProduct-specific labelling, listing and certification requirements under AYUSH export schemes may also apply depending on the market.",
+    sources: [
+      { title: "Drugs and Cosmetics Rules, 1945", authority: "Ministry of Health & Family Welfare" },
+      { title: "Schedule T — Good Manufacturing Practices for ASU Drugs", authority: "Ministry of AYUSH" },
+      { title: "AYUSH Regulatory Resources", authority: "Ministry of AYUSH" },
+    ],
+  },
+};
+
+const FALLBACK = {
+  answer:
+    "Prototype mode: this question isn't covered by the demonstration script yet, so no substantive answer is generated. A connected knowledge service would ground the answer in cited public sources for the selected language and jurisdiction.",
+  sources: [] as DemoSource[],
+};
 
 function AssistantPage() {
   const [lang, setLang] = useState<string>(LANGS[0]);
@@ -33,7 +79,8 @@ function AssistantPage() {
 
   const ask = (q: string) => {
     const text = q.trim(); if (!text) return;
-    setMsgs(m => [...m, { role: "user", text }, { role: "ai", text: `Preview mode: the knowledge service isn't connected yet, so no answer is generated. Once connected, answers for ${jur} in ${lang} will appear here with citations.` }]);
+    const demo = DEMO[text] ?? FALLBACK;
+    setMsgs(m => [...m, { role: "user", text }, { role: "ai", text: demo.answer, sources: demo.sources }]);
     setHistory(h => [text, ...h.filter(x => x !== text)].slice(0, 8));
     setInput("");
   };
@@ -55,8 +102,8 @@ function AssistantPage() {
           {msgs.length === 0 ? <div className="grid gap-3 sm:grid-cols-2">{SUGGESTED.map(s => <button key={s} onClick={() => ask(s)} className="feature-card !min-h-0 text-left text-sm !p-4"><Sparkles className="mb-2 size-4 text-gold" />{s}</button>)}</div> :
             msgs.map((m, i) => m.role === "user"
               ? <div key={i} className="ml-auto w-fit max-w-[80%] rounded-lg bg-secondary px-4 py-3 text-sm fade-in">{m.text}</div>
-              : <div key={i} className="fade-in space-y-3"><div className="answer-block"><div className="mb-1.5 flex items-center gap-2"><Sparkles className="size-3.5 text-gold" /><span className="micro-label text-gold">IP-SAKTI</span></div>{m.text}</div>
-                  <div><p className="micro-label mb-2">SOURCES</p><div className="grid gap-2 sm:grid-cols-3">{["Patent law", "AYUSH guidance", "WIPO reference"].map(s => <div key={s} className="panel flex items-center gap-2 p-3 text-xs text-muted-foreground"><FileCheck2 className="size-4 text-primary" />{s}<span className="ml-auto text-[10px]">pending</span></div>)}</div></div></div>)}
+              : <div key={i} className="fade-in space-y-3"><div className="answer-block"><div className="mb-1.5 flex items-center gap-2"><Sparkles className="size-3.5 text-gold" /><span className="micro-label text-gold">IP-SAKTI</span><span className="ml-auto text-[10px] text-muted-foreground">Prototype response</span></div>{m.text.split("\n\n").map((p, j) => <p key={j}>{p}</p>)}</div>
+                  {m.sources.length > 0 && <div><p className="micro-label mb-2">SOURCES</p><div className="grid gap-2 sm:grid-cols-3">{m.sources.map(s => <div key={s.title} className="panel flex items-center gap-2 p-3 text-xs text-muted-foreground"><FileCheck2 className="size-4 shrink-0 text-primary" /><span className="truncate">{s.title} — {s.authority}</span><span className="ml-auto shrink-0 text-[10px]">prototype</span></div>)}</div></div></div>)}
         </div>
         <form onSubmit={e => { e.preventDefault(); ask(input); }} className="flex gap-2 border-t border-border p-4">
           <input className="field" value={input} onChange={e => setInput(e.target.value)} placeholder="Ask about patents, trademarks, Ayurveda regulations..." />
