@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AssistantRouteImport } from './routes/assistant'
 import { Route as ComplianceRouteImport } from './routes/compliance'
 import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as PriorArtRouteImport } from './routes/prior-art'
 import { Route as SourcesRouteImport } from './routes/sources'
 
@@ -36,6 +37,11 @@ const DashboardRoute = DashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PriorArtRoute = PriorArtRouteImport.update({
   id: '/prior-art',
   path: '/prior-art',
@@ -52,6 +58,7 @@ export interface FileRoutesByFullPath {
   '/assistant': typeof AssistantRoute
   '/compliance': typeof ComplianceRoute
   '/dashboard': typeof DashboardRoute
+  '/login': typeof LoginRoute
   '/prior-art': typeof PriorArtRoute
   '/sources': typeof SourcesRoute
 }
@@ -60,6 +67,7 @@ export interface FileRoutesByTo {
   '/assistant': typeof AssistantRoute
   '/compliance': typeof ComplianceRoute
   '/dashboard': typeof DashboardRoute
+  '/login': typeof LoginRoute
   '/prior-art': typeof PriorArtRoute
   '/sources': typeof SourcesRoute
 }
@@ -69,6 +77,7 @@ export interface FileRoutesById {
   '/assistant': typeof AssistantRoute
   '/compliance': typeof ComplianceRoute
   '/dashboard': typeof DashboardRoute
+  '/login': typeof LoginRoute
   '/prior-art': typeof PriorArtRoute
   '/sources': typeof SourcesRoute
 }
@@ -79,6 +88,7 @@ export interface FileRouteTypes {
     | '/assistant'
     | '/compliance'
     | '/dashboard'
+    | '/login'
     | '/prior-art'
     | '/sources'
   fileRoutesByTo: FileRoutesByTo
@@ -87,6 +97,7 @@ export interface FileRouteTypes {
     | '/assistant'
     | '/compliance'
     | '/dashboard'
+    | '/login'
     | '/prior-art'
     | '/sources'
   id:
@@ -95,6 +106,7 @@ export interface FileRouteTypes {
     | '/assistant'
     | '/compliance'
     | '/dashboard'
+    | '/login'
     | '/prior-art'
     | '/sources'
   fileRoutesById: FileRoutesById
@@ -104,6 +116,7 @@ export interface RootRouteChildren {
   AssistantRoute: typeof AssistantRoute
   ComplianceRoute: typeof ComplianceRoute
   DashboardRoute: typeof DashboardRoute
+  LoginRoute: typeof LoginRoute
   PriorArtRoute: typeof PriorArtRoute
   SourcesRoute: typeof SourcesRoute
 }
@@ -138,6 +151,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/prior-art': {
       id: '/prior-art'
       path: '/prior-art'
@@ -160,6 +180,7 @@ const rootRouteChildren: RootRouteChildren = {
   AssistantRoute: AssistantRoute,
   ComplianceRoute: ComplianceRoute,
   DashboardRoute: DashboardRoute,
+  LoginRoute: LoginRoute,
   PriorArtRoute: PriorArtRoute,
   SourcesRoute: SourcesRoute,
 }
