@@ -293,7 +293,7 @@ GitHub
 Vercel
 
 
-# Crrent Prototype
+# Current Prototype
 
 The current SIH prototype demonstrates the complete frontend workflow using structured prototype/demo data.
 
