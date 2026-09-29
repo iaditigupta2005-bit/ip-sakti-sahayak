@@ -162,10 +162,10 @@ function AssistantPage() {
           <Select label="JURISDICTION" options={JURISDICTIONS} value={jur} onChange={setJur} />
         </div>
         <div className="flex-1 space-y-4 p-5">
-          {msgs.length === 0 ? <div className="grid gap-3 sm:grid-cols-2">{SUGGESTED.map(s => <button key={s} onClick={() => ask(s)} className="feature-card !min-h-0 text-left text-sm !p-4"><Sparkles className="mb-2 size-4 text-gold" />{s}</button>)}</div> :
+          {msgs.length === 0 ? <div className="grid gap-3 sm:grid-cols-2">{questions.map(s => <button key={s} onClick={() => ask(s)} className="feature-card !min-h-0 text-left text-sm !p-4"><Sparkles className="mb-2 size-4 text-gold" />{s}</button>)}</div> :
             msgs.map((m, i) => m.role === "user"
               ? <div key={i} className="ml-auto w-fit max-w-[80%] rounded-lg bg-secondary px-4 py-3 text-sm fade-in">{m.text}</div>
-              : <div key={i} className="fade-in space-y-3"><div className="answer-block"><div className="mb-1.5 flex items-center gap-2"><Sparkles className="size-3.5 text-gold" /><span className="micro-label text-gold">IP-SAKTI</span><span className="ml-auto text-[10px] text-muted-foreground">Prototype response</span></div>{m.text.split("\n\n").map((p, j) => <p key={j} className={j > 0 ? "mt-3" : undefined}>{p}</p>)}</div>
+              : <div key={i} className="fade-in space-y-3"><div className="answer-block"><div className="mb-1.5 flex items-center gap-2"><Sparkles className="size-3.5 text-gold" /><span className="micro-label text-gold">IP-SAKTI</span>{m.jurisdiction && <span className="text-[10px] text-muted-foreground">· {m.jurisdiction}</span>}<span className="ml-auto text-[10px] text-muted-foreground">Prototype response</span></div>{m.text.split("\n\n").map((p, j) => <p key={j} className={j > 0 ? "mt-3" : undefined}>{p}</p>)}</div>
                   {m.sources && m.sources.length > 0 && <div>
                     <p className="micro-label mb-2">SOURCES</p>
                     <div className="grid gap-2 sm:grid-cols-3">
