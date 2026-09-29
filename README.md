@@ -123,7 +123,7 @@ This avoids presenting the prototype as an absolute legal or regulatory determin
 
 ---
 
-### 📚 Knowledge Base
+# Knowledge Base
 
 The Knowledge Base provides a structured interface for exploring relevant legal, regulatory and traditional-knowledge resources.
 
@@ -153,7 +153,7 @@ This allows the platform to maintain jurisdictional context while presenting IP 
 ---
  How It Works
 
-``
+````
                     USER
                       │
                       ▼
@@ -176,6 +176,7 @@ This allows the platform to maintain jurisdictional context while presenting IP 
                       │
                       ▼
              Actionable Research
+````
  # Intended RAG Workflow
 
 The planned evidence-grounded architecture follows:
@@ -226,6 +227,7 @@ The key focus is the combination of Indian IP + Ayurveda + traditional knowledge
 # System Architecture
 
 The project is structured into a frontend application and a separate backend service.
+````
 
 ┌─────────────────────────────────────────┐
 │              USER / RESEARCHER          │
@@ -270,6 +272,7 @@ The project is structured into a frontend application and a separate backend ser
 │  Compliance Assessments                 │
 │  Activity / Saved Sources               │
 └─────────────────────────────────────────┘
+````
 #Technology Stack
 Frontend
 TanStack Start
