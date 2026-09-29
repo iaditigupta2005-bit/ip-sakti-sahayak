@@ -363,17 +363,11 @@ Live Demo:
 https://ip-sakti-sahayak-rosy.vercel.app/
 
 # Run Locally
-Frontend
-npm install
-npm run dev
+
 The development server will provide a local URL such as:
 
 http://localhost:8080/
 
-Backend
-cd backend
-pip install -r requirements.txt
-python -m uvicorn app.main:app --reload
 
 Backend API documentation:
 
