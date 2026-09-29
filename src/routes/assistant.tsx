@@ -3,6 +3,7 @@ import { useState } from "react";
 import { ArrowUp, FileCheck2, MessageSquare, Plus, Sparkles } from "lucide-react";
 import { AppShell, JURISDICTIONS, Select } from "@/components/app/AppShell";
 import { Button } from "@/components/ui/button";
+import { recordActivity } from "@/lib/demo-activity";
 
 export const Route = createFileRoute("/assistant")({
   head: () => ({ meta: [
@@ -23,7 +24,7 @@ const SUGGESTED = [
   "What licence do I need to manufacture Ayurvedic medicine?",
 ];
 type DemoSource = { title: string; authority: string };
-type Msg = { role: "user" | "ai"; text: string; sources?: DemoSource[] };
+type Msg = { role: "user" | "ai"; text: string; sources?: DemoSource[]; jurisdiction?: string };
 
 const DEMO: Record<string, { answer: string; sources: DemoSource[] }> = {
   "Can I patent an Ayurvedic herbal formulation?": {
@@ -70,18 +71,80 @@ const FALLBACK = {
   sources: [] as DemoSource[],
 };
 
+// Local static translations (prototype only — no translation service).
+const TR: Record<string, { questions: string[]; answers?: string[] }> = {
+  "हिन्दी": {
+    questions: [
+      "क्या मैं किसी आयुर्वेदिक हर्बल फॉर्मूलेशन का पेटेंट करा सकता हूँ?",
+      "पेटेंट अधिनियम की धारा 3(p) किसे कवर करती है?",
+      "पारंपरिक ज्ञान को अंतरराष्ट्रीय स्तर पर कैसे संरक्षित किया जाता है?",
+      "आयुर्वेदिक दवा बनाने के लिए मुझे कौन-सा लाइसेंस चाहिए?",
+    ],
+    answers: [
+      "किसी आयुर्वेदिक हर्बल फॉर्मूलेशन की पेटेंट योग्यता नवीनता, आविष्कारी कदम और भारतीय पेटेंट कानून के तहत लागू अपवादों जैसे कारकों पर निर्भर करती है। पारंपरिक ज्ञान और फॉर्मूलेशन की प्रकृति भी पेटेंट योग्यता को प्रभावित कर सकती है।\n\nवास्तविक मूल्यांकन के लिए संबंधित पेटेंट प्रावधानों और लागू आयुष/पारंपरिक-ज्ञान दिशानिर्देशों की समीक्षा की जानी चाहिए।",
+      "पेटेंट अधिनियम, 1970 की धारा 3(p) ऐसे आविष्कार को पेटेंट योग्यता से बाहर करती है जो वास्तव में पारंपरिक ज्ञान है, या पारंपरिक रूप से ज्ञात घटकों के ज्ञात गुणों का संयोजन या दोहराव है।\n\nव्यवहार में, केवल पारंपरिक ज्ञान या ज्ञात आयुर्वेदिक घटकों की व्यवस्था पर आधारित दावा अस्वीकार हो सकता है, जबकि ऐसे ज्ञान पर वास्तविक तकनीकी प्रगति की उसके गुणों के आधार पर जाँच की जा सकती है।",
+      "अंतरराष्ट्रीय स्तर पर पारंपरिक ज्ञान को कई साधनों से संबोधित किया जाता है: पहुँच और लाभ-साझाकरण पर नागोया प्रोटोकॉल, आनुवंशिक संसाधनों और पारंपरिक ज्ञान पर WIPO का कार्य, और TKDL जैसे रक्षात्मक डेटाबेस जो पेटेंट कार्यालयों को अमान्य दावे अस्वीकार करने में मदद करते हैं।\n\nइसलिए संरक्षण किसी एकल वैश्विक पंजीकरण प्रणाली के बजाय निवारक और दस्तावेज़-आधारित होता है।",
+      "भारत में आयुर्वेदिक दवाओं के निर्माण के लिए सामान्यतः औषधि एवं प्रसाधन सामग्री अधिनियम, 1940 और नियम, 1945 के तहत राज्य लाइसेंसिंग प्राधिकरण से लाइसेंस, तथा ASU दवाओं के लिए अनुसूची T की अच्छी विनिर्माण प्रथाओं का पालन आवश्यक है।\n\nबाज़ार के अनुसार उत्पाद-विशिष्ट लेबलिंग, सूचीकरण और प्रमाणन आवश्यकताएँ भी लागू हो सकती हैं।",
+    ],
+  },
+  "मराठी": {
+    questions: [
+      "मी आयुर्वेदिक हर्बल फॉर्म्युलेशनचे पेटंट घेऊ शकतो का?",
+      "पेटंट कायद्याचे कलम 3(p) कशाला लागू होते?",
+      "पारंपरिक ज्ञानाचे आंतरराष्ट्रीय स्तरावर संरक्षण कसे केले जाते?",
+      "आयुर्वेदिक औषध तयार करण्यासाठी मला कोणता परवाना लागतो?",
+    ],
+  },
+  "தமிழ்": {
+    questions: [
+      "ஆயுர்வேத மூலிகை சூத்திரத்திற்கு காப்புரிமை பெற முடியுமா?",
+      "காப்புரிமைச் சட்டத்தின் பிரிவு 3(p) எதை உள்ளடக்குகிறது?",
+      "பாரம்பரிய அறிவு சர்வதேச அளவில் எவ்வாறு பாதுகாக்கப்படுகிறது?",
+      "ஆயுர்வேத மருந்து தயாரிக்க எனக்கு என்ன உரிமம் தேவை?",
+    ],
+  },
+  "తెలుగు": {
+    questions: [
+      "ఆయుర్వేద మూలికా ఫార్ములేషన్‌కు పేటెంట్ పొందవచ్చా?",
+      "పేటెంట్ల చట్టంలోని సెక్షన్ 3(p) దేనిని వర్తిస్తుంది?",
+      "సాంప్రదాయ జ్ఞానం అంతర్జాతీయంగా ఎలా రక్షించబడుతుంది?",
+      "ఆయుర్వేద ఔషధం తయారీకి నాకు ఏ లైసెన్స్ అవసరం?",
+    ],
+  },
+  "বাংলা": {
+    questions: [
+      "আমি কি একটি আয়ুর্বেদিক ভেষজ ফর্মুলেশনের পেটেন্ট করতে পারি?",
+      "পেটেন্ট আইনের ধারা 3(p) কী অন্তর্ভুক্ত করে?",
+      "প্রথাগত জ্ঞান আন্তর্জাতিকভাবে কীভাবে সুরক্ষিত হয়?",
+      "আয়ুর্বেদিক ওষুধ তৈরির জন্য আমার কোন লাইসেন্স প্রয়োজন?",
+    ],
+  },
+};
+
+const indexOfQuestion = (text: string) => {
+  const i = SUGGESTED.indexOf(text);
+  if (i >= 0) return i;
+  for (const t of Object.values(TR)) { const j = t.questions.indexOf(text); if (j >= 0) return j; }
+  return -1;
+};
+
 function AssistantPage() {
   const [lang, setLang] = useState<string>(LANGS[0]);
   const [jur, setJur] = useState<string>(JURISDICTIONS[0]);
   const [input, setInput] = useState("");
   const [msgs, setMsgs] = useState<Msg[]>([]);
   const [history, setHistory] = useState<string[]>([]);
+  const questions = TR[lang]?.questions ?? SUGGESTED;
 
   const ask = (q: string) => {
     const text = q.trim(); if (!text) return;
-    const demo = DEMO[text] ?? FALLBACK;
-    setMsgs(m => [...m, { role: "user", text }, { role: "ai", text: demo.answer, sources: demo.sources }]);
+    const idx = indexOfQuestion(text);
+    const demo = idx >= 0 ? DEMO[SUGGESTED[idx]] : FALLBACK;
+    const translated = idx >= 0 ? TR[lang]?.answers?.[idx] : undefined;
+    const note = lang !== "English" && idx >= 0 && !translated ? `\n\n(Prototype: a ${lang} translation of this answer is not yet available — shown in English.)` : "";
+    setMsgs(m => [...m, { role: "user", text }, { role: "ai", text: (translated ?? demo.answer) + note, sources: demo.sources, jurisdiction: jur }]);
     setHistory(h => [text, ...h.filter(x => x !== text)].slice(0, 8));
+    recordActivity("questions", text);
     setInput("");
   };
 
