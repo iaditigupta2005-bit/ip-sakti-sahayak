@@ -24,10 +24,13 @@ function Navbar() {
     <nav className="page-shell flex h-20 items-center justify-between" aria-label="Primary navigation">
       <Brand />
       <div className="hidden items-center gap-7 lg:flex">{navItems.map(([label, to]) => <Link key={label} to={to} className="nav-link">{label}</Link>)}</div>
-      <Button asChild variant="hero" size="lg" className="hidden lg:inline-flex"><Link to="/assistant">Launch Assistant <ArrowRight /></Link></Button>
+      <div className="hidden items-center gap-5 lg:flex">
+        <Link to="/login" className="nav-link">Login</Link>
+        <Button asChild variant="hero" size="lg"><Link to="/assistant">Launch Assistant <ArrowRight /></Link></Button>
+      </div>
       <Button variant="ghost" size="icon" className="lg:hidden" aria-label="Open menu" onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</Button>
     </nav>
-    {open && <div className="mobile-menu lg:hidden"><div className="page-shell flex flex-col gap-1 py-4">{navItems.map(([label, to]) => <Link key={label} to={to} onClick={() => setOpen(false)} className="rounded-md px-4 py-3 text-sm text-muted-foreground hover:bg-accent hover:text-foreground">{label}</Link>)}<Button asChild variant="hero" className="mt-3"><Link to="/assistant">Launch Assistant <ArrowRight /></Link></Button></div></div>}
+    {open && <div className="mobile-menu lg:hidden"><div className="page-shell flex flex-col gap-1 py-4">{navItems.map(([label, to]) => <Link key={label} to={to} onClick={() => setOpen(false)} className="rounded-md px-4 py-3 text-sm text-muted-foreground hover:bg-accent hover:text-foreground">{label}</Link>)}<Link to="/login" onClick={() => setOpen(false)} className="rounded-md px-4 py-3 text-sm text-muted-foreground hover:bg-accent hover:text-foreground">Login</Link><Button asChild variant="hero" className="mt-3"><Link to="/assistant">Launch Assistant <ArrowRight /></Link></Button></div></div>}
   </header>;
 }
 
