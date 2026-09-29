@@ -16,6 +16,24 @@ export const Route = createFileRoute("/compliance")({
 });
 
 const STEPS = ["Product", "Formulation", "Intended use", "Jurisdiction", "Generate"];
+const CHECKLIST = [
+  { label: "Product classification", status: "Applicable" }, { label: "Applicable regulatory framework", status: "Applicable" },
+  { label: "Manufacturing requirements", status: "Review" }, { label: "Labelling / packaging review", status: "Review" },
+  { label: "Ingredient / formulation review", status: "Needs verification" }, { label: "Intellectual property considerations", status: "Review" },
+  { label: "Traditional knowledge considerations", status: "Needs verification" },
+];
+const CONSIDERATIONS: Record<string, string[]> = {
+  India: ["ASU drugs are regulated under the Drugs and Cosmetics Act, 1940 and Rules, 1945.", "Manufacturing typically requires a State Licensing Authority licence and Schedule T GMP.", "Classical formulations should reference an authoritative text listed in the First Schedule."],
+  "United States": ["Ayurvedic products are often marketed as dietary supplements under DSHEA.", "Structure/function claims must avoid disease-treatment claims.", "Heavy-metal testing and cGMP (21 CFR Part 111) should be reviewed."],
+  "European Union": ["Directive 2004/24/EC offers a simplified registration for traditional herbal medicinal products.", "Evidence of traditional use (typically 30 years, 15 in the EU) may be required.", "Food-supplement routes have separate national rules."],
+  "International (WIPO)": ["Requirements depend on each target country's national regulator.", "Access and benefit-sharing obligations may apply under the Nagoya Protocol.", "Traditional-knowledge disclosure rules may affect IP filings."],
+};
+const SOURCES: Record<string, string[]> = {
+  India: ["Drugs and Cosmetics Act, 1940", "Schedule T (ASU GMP)", "Ministry of AYUSH resources"],
+  "United States": ["DSHEA, 1994", "21 CFR Part 111", "US FDA guidance"],
+  "European Union": ["Directive 2004/24/EC", "EMA HMPC monographs"],
+  "International (WIPO)": ["WIPO GRATK Treaty", "Nagoya Protocol"],
+};
 
 function CompliancePage() {
   const [step, setStep] = useState(0);
@@ -40,12 +58,15 @@ function CompliancePage() {
       <div className="mt-6 flex justify-between"><Button variant="ghost" disabled={step === 0} onClick={() => setStep(s => s - 1)}><ArrowLeft /> Back</Button>{step < 4 && <Button variant="glass" onClick={() => setStep(s => s + 1)}>Next <ArrowRight /></Button>}</div>
     </div>
 
-    {done && <section className="mt-8 fade-in"><h2 className="text-xl font-medium">Compliance Overview</h2>
-      <div className="mt-4 grid gap-5 lg:grid-cols-2">
-        <div className="panel p-5"><p className="micro-label">INFORMATION STATUS</p>{checks.map(c => <div className="check-row" key={c.label}>{c.ok ? <CheckCircle2 className="text-primary" /> : <TriangleAlert className="size-4 text-gold" />}<span>{c.label}</span><span className="ml-auto text-xs text-muted-foreground">{c.ok ? "Available" : "Verification required"}</span></div>)}</div>
+    {done && <section className="mt-8 fade-in"><div className="flex flex-wrap items-center gap-3"><h2 className="text-xl font-medium">Compliance Overview</h2><span className="source-chip">Prototype guidance · not legal or regulatory advice</span></div>
+      <div className="panel mt-4 p-5"><p className="micro-label">OVERALL ASSESSMENT</p><p className="mt-2 text-sm"><span className="text-gold">Review recommended</span> — <span className="text-muted-foreground">{f.name || "This product"} ({f.category}) appears to fall under the traditional-medicine framework for {f.jurisdiction}. Several items need verification before any regulatory filing.</span></p></div>
+      <div className="mt-5 grid gap-5 lg:grid-cols-2">
+        <div className="panel p-5"><p className="micro-label">COMPLIANCE CHECKLIST</p>{CHECKLIST.map(c => <div className="check-row" key={c.label}>{c.status === "Applicable" ? <CheckCircle2 className="text-primary" /> : <TriangleAlert className="size-4 text-gold" />}<span>{c.label}</span><span className="ml-auto text-xs text-muted-foreground">{c.status}</span></div>)}</div>
         <div className="space-y-5">
-          <div className="panel p-5"><p className="micro-label">RELEVANT REQUIREMENTS & DOCUMENTATION</p><p className="mt-3 text-sm text-muted-foreground">Requirement mapping for {f.jurisdiction} will appear once the regulatory source library is connected.</p></div>
-          <div className="panel p-5"><p className="micro-label mb-3">SOURCES</p><div className="flex flex-wrap gap-2">{["AYUSH framework", "Drugs & Cosmetics rules", "Labelling guidance"].map(s => <span key={s} className="source-chip"><FileCheck2 className="size-3" />{s}</span>)}</div></div>
+          <div className="panel p-5"><p className="micro-label">INFORMATION STATUS</p>{checks.map(c => <div className="check-row" key={c.label}>{c.ok ? <CheckCircle2 className="text-primary" /> : <TriangleAlert className="size-4 text-gold" />}<span>{c.label}</span><span className="ml-auto text-xs text-muted-foreground">{c.ok ? "Available" : "Needs verification"}</span></div>)}</div>
+          <div className="panel p-5"><p className="micro-label">REGULATORY CONSIDERATIONS</p><ul className="mt-3 list-disc space-y-1.5 pl-5 text-sm text-muted-foreground">{(CONSIDERATIONS[f.jurisdiction] ?? CONSIDERATIONS["India"] ?? []).map(t => <li key={t}>{t}</li>)}</ul></div>
+          <div className="panel p-5"><p className="micro-label mb-3">SOURCES</p><div className="flex flex-wrap gap-2">{(SOURCES[f.jurisdiction] ?? SOURCES["India"] ?? []).map(s => <span key={s} className="source-chip"><FileCheck2 className="size-3" />{s}</span>)}</div></div>
+          <div className="panel p-5"><p className="micro-label">SUGGESTED NEXT STEPS</p><ol className="mt-3 list-decimal space-y-1.5 pl-5 text-sm text-muted-foreground"><li>Confirm product classification with the relevant licensing authority.</li><li>Prepare a complete ingredient and source-reference dossier.</li><li>Review label claims against permitted indications.</li><li>Run a prior-art and traditional-knowledge check before any IP filing.</li></ol></div>
         </div>
       </div>
     </section>}
