@@ -139,7 +139,7 @@ function AssistantPage() {
   const ask = (q: string) => {
     const text = q.trim(); if (!text) return;
     const idx = indexOfQuestion(text);
-    const demo = idx >= 0 ? DEMO[SUGGESTED[idx]] : FALLBACK;
+    const demo = idx >= 0 ? DEMO[SUGGESTED[idx] ?? ""] ?? FALLBACK : FALLBACK;
     const translated = idx >= 0 ? TR[lang]?.answers?.[idx] : undefined;
     const note = lang !== "English" && idx >= 0 && !translated ? `\n\n(Prototype: a ${lang} translation of this answer is not yet available — shown in English.)` : "";
     setMsgs(m => [...m, { role: "user", text }, { role: "ai", text: (translated ?? demo.answer) + note, sources: demo.sources, jurisdiction: jur }]);
