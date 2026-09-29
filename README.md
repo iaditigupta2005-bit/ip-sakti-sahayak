@@ -1,670 +1,377 @@
 # IP-SAKTI Sahayak
 
-Build a premium, production-quality landing page for a project called “IP-SAKTI Sahayak”.
+### Multilingual AI-Assisted Intellectual Property & Regulatory Guidance for Ayurveda
 
-PRODUCT
+IP-SAKTI Sahayak is a multilingual, source-cited AI assistant concept designed to help Ayurveda innovators, researchers, startups, IP professionals and regulatory teams navigate Intellectual Property and regulatory information across national and international regimes.
 
-IP-SAKTI Sahayak is a multilingual, RAG-based, source-cited AI assistant for Intellectual Property and regulatory guidance in Ayurveda, covering Indian and international regimes.
+The platform brings together **IP research, prior-art discovery, regulatory guidance and a structured knowledge base** into a single workflow.
 
-The website should feel like a combination of:
+> **Ask. Verify. Protect. Comply.**
 
-a premium AI startup
+---
 
-an intelligent legal/research platform
+# Problem Statement
 
-an Ayurveda-inspired technology product
+Ayurveda and traditional-knowledge-based innovators often need to navigate fragmented information across:
 
-a government/innovation-grade solution suitable for a Smart India Hackathon presentation
+- Patent and IP databases
+- Indian intellectual property laws
+- AYUSH-related regulatory information
+- Traditional knowledge resources
+- International IP frameworks
+- Prior-art documents
+- Multiple languages and jurisdictions
 
-This is NOT a generic chatbot landing page.
+Existing platforms provide powerful patent search, document discovery or legal resources, but users may still need to move between multiple sources to understand how the information relates to their specific innovation.
 
-The visual quality should feel 10/10, polished, futuristic, trustworthy, sophisticated and competition-ready.
+IP-SAKTI Sahayak addresses this gap by providing a **unified, guided workflow for IP research and regulatory understanding**, with a specific focus on Ayurveda and traditional knowledge.
 
-DESIGN DIRECTION
+---
 
-Create a premium dark-mode-first interface.
+# Our Solution
 
-Visual language
+IP-SAKTI Sahayak provides a single platform through which users can:
 
-Deep charcoal / near-black background
+1. Ask IP and regulatory questions using the AI Assistant.
+2. Explore potentially relevant prior-art documents.
+3. Assess regulatory considerations through a structured compliance workflow.
+4. Search and explore a curated knowledge base.
+5. Work across different languages and jurisdictions.
+6. Trace important guidance back to relevant sources.
 
-Rich emerald / forest green as the primary accent
+The platform is designed as an **evidence-grounded research and assistance layer**, rather than simply a generic chatbot.
 
-Subtle gold accents inspired by Ayurveda
+---
 
-White/off-white typography
+# Key Features
 
-Very subtle glassmorphism
+# Multilingual AI Assistant
 
-Soft gradients
+Users can ask questions related to:
 
-Fine borders
+- Patents
+- Trademarks
+- Ayurveda
+- Traditional knowledge
+- IP regulations
+- Regulatory requirements
 
-Large whitespace
+The prototype supports multiple language options including:
 
-Elegant shadows
+- English
+- हिन्दी
+- தமிழ்
+- తెలుగు
+- বাংলা
+- मराठी
 
-Subtle grain/noise texture
+It also provides jurisdiction selection for:
 
-Minimal but impressive animations
+- India
+- United States
+- European Union
+- International / WIPO
 
-Do NOT make it look like a typical green medical website.
+---
 
-Do NOT use cheesy stock photos of doctors, herbs, or people.
+# Prior-Art Discovery
 
-Instead, combine:
-AI + legal intelligence + Ayurveda + knowledge graph aesthetics.
+The Prior-Art module allows users to enter an invention description and explore potentially relevant documents.
 
-Use subtle visual motifs such as:
+The prototype displays:
 
-connected knowledge nodes
+- Document title
+- Identifier
+- Jurisdiction
+- Document type
+- Summary
+- Relevance / similarity
+- Document details
 
-document cards
+> **Important:** Similarity results are research signals and are not legal conclusions.
 
-citation lines
+---
 
-botanical line-art
+# Compliance Assessment
 
-abstract neural-network patterns
+The Compliance workflow guides the user through a structured assessment:
 
-legal/document symbols
+1. Product
+2. Formulation
+3. Intended Use
+4. Jurisdiction
+5. Generate
 
-NAVBAR
+The resulting prototype assessment can present:
 
-Create a sticky transparent navbar with:
+- Regulatory considerations
+- Applicable frameworks
+- Documentation requirements
+- Manufacturing considerations
+- Labelling considerations
+- IP considerations
+- Traditional knowledge considerations
+- Sources and next steps
 
-Left:
-IP-SAKTI
-small text:
-Sahayak
+The system uses statuses such as:
 
-Center/right navigation:
+- Applicable
+- Review
+- Needs Verification
 
-Home
+This avoids presenting the prototype as an absolute legal or regulatory determination.
 
+---
+
+### 📚 Knowledge Base
+
+The Knowledge Base provides a structured interface for exploring relevant legal, regulatory and traditional-knowledge resources.
+
+Users can search and filter documents using parameters such as:
+
+- Jurisdiction
+- Document type
+- Authority
+- Year
+- Language
+
+---
+
+# Jurisdiction-Aware Workflow
+
+IP-SAKTI Sahayak is designed to consider different legal and regulatory contexts.
+
+The prototype includes:
+
+- 🇮🇳 India
+- 🇺🇸 United States
+- 🇪🇺 European Union
+- International / WIPO
+
+This allows the platform to maintain jurisdictional context while presenting IP and regulatory information.
+
+---
+ How It Works
+
+``
+                    USER
+                      │
+                      ▼
+              ┌───────────────┐
+              │  IP-SAKTI     │
+              │   Sahayak     │
+              └───────┬───────┘
+                      │
+        ┌─────────────┼─────────────┐
+        ▼             ▼             ▼
+   AI Assistant   Prior-Art     Compliance
+        │          Search        Assessment
+        │             │             │
+        └─────────────┼─────────────┘
+                      ▼
+              Knowledge Base
+                      │
+                      ▼
+          Sources / Evidence / Guidance
+                      │
+                      ▼
+             Actionable Research
+ # Intended RAG Workflow
+
+The planned evidence-grounded architecture follows:
+User Question
+      ↓
+Query Understanding
+      ↓
+Knowledge Retrieval
+      ↓
+Relevant Documents
+      ↓
+Evidence Analysis
+      ↓
+Source-Cited Response
+      ↓
+Actionable Guidance
+# Existing Solutions & Our Differentiation
+
+Several established platforms already support IP and patent research, including patent databases and advanced patent analytics systems.
+
+These platforms are valuable for:
+
+Patent discovery
+Full-text search
+Prior-art research
+Patent analytics
+Classification and document analysis
+
+IP-SAKTI Sahayak is not intended to replace these established databases.
+
+Instead, our approach focuses on creating a unified workflow around the user's innovation, connecting:
+ Innovation
+    ↓
+IP Question
+    ↓
+Prior-Art Research
+    ↓
+Legal / Regulatory Understanding
+    ↓
+Compliance Considerations
+    ↓
+Relevant Sources
+    ↓
+Actionable Research Guidance
+
+The key focus is the combination of Indian IP + Ayurveda + traditional knowledge + regulatory guidance + multilingual interaction within one user-oriented workflow.
+
+# System Architecture
+
+The project is structured into a frontend application and a separate backend service.
+
+┌─────────────────────────────────────────┐
+│              USER / RESEARCHER          │
+└────────────────────┬────────────────────┘
+                     │
+                     ▼
+┌─────────────────────────────────────────┐
+│             FRONTEND LAYER              │
+│      TanStack Start + React             │
+│             Tailwind CSS                │
+│                                         │
+│  Dashboard                              │
+│  AI Assistant                           │
+│  Prior-Art                              │
+│  Compliance                             │
+│  Knowledge Base                         │
+└────────────────────┬────────────────────┘
+                     │
+                     ▼
+┌─────────────────────────────────────────┐
+│              API LAYER                  │
+│               FastAPI                   │
+│                                         │
+│  Assistant Routes                       │
+│  Prior-Art Routes                       │
+│  Compliance Routes                      │
+│  Knowledge Routes                       │
+│  Ingestion Routes                       │
+└────────────────────┬────────────────────┘
+                     │
+                     ▼
+┌─────────────────────────────────────────┐
+│           DATA / KNOWLEDGE LAYER        │
+│                                         │
+│      PostgreSQL via Supabase            │
+│                                         │
+│  Documents                              │
+│  Sections                               │
+│  Conversations                          │
+│  Citations                              │
+│  Prior-Art Results                      │
+│  Compliance Assessments                 │
+│  Activity / Saved Sources               │
+└─────────────────────────────────────────┘
+#Technology Stack
+Frontend
+TanStack Start
+React
+TypeScript
+Tailwind CSS
+Lucide React
+#Backend
+Python
+FastAPI
+#Database
+PostgreSQL
+Supabase
+#Version Control
+Git
+GitHub
+#Deployment
+Vercel
+
+
+# Crrent Prototype
+
+The current SIH prototype demonstrates the complete frontend workflow using structured prototype/demo data.
+
+Available prototype modules
+Landing Page
+Login / Demo Access
+Dashboard
 AI Assistant
-
-Prior-Art
-
-Compliance
-
+Prior-Art Search
+Compliance Assessment
 Knowledge Base
+Multilingual interface
+Jurisdiction selection
 
-Right side:
-Launch Assistant →
+The prototype is designed to demonstrate the user experience and end-to-end workflow while the backend architecture is maintained separately for deeper integration.
 
-Add a subtle glowing hover effect.
+# Future Scope
+The platform can be extended with:
 
-Navbar becomes slightly blurred/glass-like while scrolling.
+Large-scale official document ingestion
+Semantic search
+Embeddings and vector retrieval
+Advanced RAG pipelines
+Automated source extraction and citation
+Larger patent and prior-art datasets
+More comprehensive AYUSH regulatory resources
+Automated document processing
+Advanced multilingual generation
+User accounts and personalized workspaces
+Saved research sessions
+Advanced analytics and reporting
+Deeper integration with official Indian IP and regulatory sources
+# Target Users
 
-HERO SECTION
+IP-SAKTI Sahayak is designed for:
 
-Create a visually stunning hero section.
+Ayurveda researchers
+Traditional knowledge researchers
+Innovators and startups
+IP professionals
+Patent researchers
+Regulatory teams
+Academic researchers
+Product developers
 
-Small badge at the top:
+Why IP-SAKTI Sahayak?
 
-✦ AI-POWERED IP & REGULATORY INTELLIGENCE
+The platform aims to move the user from:
 
-Main headline:
+“Where do I find the information?”
 
-Protecting Ayurveda's Knowledge.
-Powering Its Future.
+to:
 
-Highlight the words “Knowledge” and “Future” with a subtle emerald-to-gold gradient.
+“What does this information mean for my innovation, what should I verify, and what should I do next?”
 
-Supporting text:
+By combining IP research, regulatory context, prior-art discovery and source-oriented knowledge into one workflow, IP-SAKTI Sahayak aims to make complex IP and regulatory research more accessible and structured.
 
-“IP-SAKTI Sahayak is a multilingual, source-cited AI assistant that helps Ayurveda innovators navigate intellectual property, prior-art discovery and regulatory requirements across national and international regimes.”
+ # Disclaimer
 
-Primary CTA:
+IP-SAKTI Sahayak is a research and information-assistance platform.
 
-Ask IP-SAKTI →
+The information and prototype assessments provided by the system do not constitute professional legal, patent or regulatory advice and should be independently verified with qualified professionals and authoritative sources before making legal or regulatory decisions.
 
-Secondary CTA:
+# Live Prototype
 
-Explore the Platform
+Live Demo:
+https://ip-sakti-sahayak-rosy.vercel.app/
 
-Below the CTAs add a small trust statement:
-
-Source-grounded • Multilingual • Jurisdiction-aware
-
-HERO VISUAL
-
-On the right side, create a sophisticated animated AI intelligence interface.
-
-Show a floating glassmorphism panel titled:
-
-IP-SAKTI Intelligence
-
-Inside show:
-
-User query:
-
-“Can my Ashwagandha formulation be protected?”
-
-Then an animated processing sequence:
-
-Understanding query...
-
-Searching trusted sources...
-
-Checking jurisdiction: India 🇮🇳
-
-Then show:
-
-Evidence-backed answer
-
-“Potential IP protection pathways may include patent protection where applicable, subject to novelty, inventive step and other legal requirements.”
-
-Below it show:
-
-Sources
-
-Patent Law
-
-AYUSH guidance
-
-WIPO reference
-
-Add tiny citation badges:
-§3 • §10 • Source verified
-
-Around this panel, show subtle floating nodes connected by thin lines:
-
-Patent
-Ayurveda
-Regulation
-WIPO
-Prior Art
-
-The visual should communicate that the system is doing evidence-grounded research, not simply chatting.
-
-TRUST STRIP
-
-Immediately below hero:
-
-Create a minimal horizontal strip:
-
-BUILT FOR
-
-Ayurveda Researchers
-•
-Innovators & Startups
-•
-IP Professionals
-•
-Researchers
-•
-Regulatory Teams
-
-PROBLEM SECTION
-
-Heading:
-
-The knowledge exists.
-Finding the right answer shouldn't be the problem.
-
-Explain that Ayurveda innovators currently have to navigate fragmented information across:
-
-Patent databases
-
-Regulatory documents
-
-AYUSH frameworks
-
-Traditional knowledge resources
-
-International IP systems
-
-Multiple languages
-
-Visualize this as multiple scattered document cards converging into one central node:
-
-IP-SAKTI
-
-Add a small animated transformation:
-
-Fragmented Knowledge → Unified Intelligence
-
-CORE FEATURES SECTION
-
-Heading:
-
-One intelligence layer for the entire IP journey.
-
-Create 4 premium feature cards.
-
-01 — ASK
-
-Multilingual AI Assistant
-
-Ask questions naturally in English or Indian languages and receive contextual guidance.
-
-Icon: conversational AI / spark.
-
-02 — VERIFY
-
-Source-Cited Intelligence
-
-Every important answer is grounded in retrieved documents with traceable citations and evidence.
-
-Icon: document + check.
-
-03 — PROTECT
-
-Prior-Art Discovery
-
-Search relevant patents and documents to identify potentially similar inventions and research.
-
-Icon: search/document.
-
-04 — COMPLY
-
-Regulatory Guidance
-
-Turn complex regulatory requirements into structured checklists and actionable next steps.
-
-Icon: shield/check.
-
-Cards should have subtle hover animations:
-
-lift
-
-border glow
-
-gradient background reveal
-
-icon movement
-
-“HOW IT WORKS” SECTION
-
-Create a visually impressive horizontal workflow.
-
-Heading:
-
-From Question to Evidence. In Seconds.
-
-Show:
-
-01
-
-Ask
-User asks a question in natural language.
-
-↓
-
-02
-
-Retrieve
-The system searches relevant knowledge sources.
-
-↓
-
-03
-
-Reason
-The RAG engine analyzes the retrieved evidence.
-
-↓
-
-04
-
-Cite
-Relevant sources are attached to the answer.
-
-↓
-
-05
-
-Act
-User receives an actionable IP/regulatory roadmap.
-
-Use connecting animated lines between each stage.
-
-SOURCE-CITED AI SECTION
-
-Create a large feature section with a split layout.
-
-Left:
-Heading:
-
-AI you can trace back to the source.
-
-Text:
-
-“IP-SAKTI is designed around evidence-grounded responses. Instead of presenting unsupported answers, the system retrieves relevant documents and connects generated guidance to its underlying sources.”
-
-Right:
-
-Create a realistic document/citation UI.
-
-Show:
-
-AI RESPONSE
-
-“Your formulation may require further assessment against applicable patentability and regulatory requirements.”
-
-Then:
-
-Evidence
-
-▣ Patent document
-Section 3 — Eligibility
-
-▣ Regulatory guidance
-Chapter 4 — Requirements
-
-▣ WIPO reference
-Traditional Knowledge
-
-Add button:
-
-View evidence →
-
-Make this section visually impressive.
-
-JURISDICTION SECTION
-
-Heading:
-
-One question. Different jurisdictions.
-
-Create three interactive cards:
-
-🇮🇳 India
-
-IP + AYUSH + Traditional Knowledge
-
-🇺🇸 United States
-
-Patent + regulatory pathway
-
-🇪🇺 European Union
-
-IP + applicable regulatory framework
-
-Add a subtle globe/network visualization behind them.
-
-When hovering a card, illuminate its network connection.
-
-Text:
-
-“Compare relevant frameworks without losing the context of your invention.”
-
-PRIOR-ART FEATURE PREVIEW
-
-Create a large dark section.
-
-Heading:
-
-Discover what already exists.
-
-Show a mock search interface:
-
-Input:
-“Ashwagandha + Brahmi herbal formulation”
-
-Button:
-Search Prior Art
-
-Below show results:
-
-Potentially Relevant Documents
-
-Patent A — 87% similarity
-Patent B — 74% similarity
-Research Document C — 63% similarity
-
-Clearly label similarity as a research signal, not a legal conclusion.
-
-CTA:
-
-Explore Prior-Art Search →
-
-COMPLIANCE FEATURE PREVIEW
-
-Create another section.
-
-Heading:
-
-Turn regulations into an actionable roadmap.
-
-Show a beautiful compliance dashboard:
-
-Product:
-Ayurvedic Herbal Formulation
-
-Status:
-
-🟢 Information available
-🟡 Verification required
-
-Checklist:
-
-✓ Product classification
-✓ Applicable framework
-✓ Documentation
-⚠ Labelling information
-⚠ Regulatory verification
-
-CTA:
-
-Check Compliance →
-
-IMPACT SECTION
-
-Create a bold section:
-
-Built for the people advancing Ayurveda.
-
-Show four statistics/cards:
-
-01
-Researchers
-
-02
-Innovators
-
-03
-IP Professionals
-
-04
-Regulatory Teams
-
-Do not invent numerical statistics or fake user counts.
-
-Use category-based impact instead of fabricated metrics.
-
-FINAL CTA
-
-Create a dramatic full-width CTA section.
-
-Heading:
-
-Your innovation deserves more than a search box.
-
-Subheading:
-
-“Ask. Verify. Protect. Comply.”
-
-Primary button:
-
-Launch IP-SAKTI →
-
-Secondary:
-
-Explore Knowledge Base
-
-Background should contain a subtle animated network of documents, nodes and botanical line-art.
-
-FOOTER
-
-Footer:
-
-IP-SAKTI Sahayak
-
-“Evidence-grounded intelligence for Ayurveda's IP and regulatory ecosystem.”
-
-Links:
-
-Platform
-AI Assistant
-Prior-Art
-Compliance
-Knowledge Base
-
-Add:
-
-Smart India Hackathon Project
-
-And a small disclaimer:
-
-“IP-SAKTI provides information and research assistance. It does not replace professional legal or regulatory advice.”
-
-MICRO-INTERACTIONS
-
-Implement polished animations:
-
-Fade-up on scroll
-
-Smooth section transitions
-
-Button hover glow
-
-Card lift on hover
-
-Animated citation indicators
-
-Subtle moving background grid
-
-Floating knowledge nodes
-
-Navbar blur on scroll
-
-Smooth scrolling
-
-Cursor-following subtle glow
-
-Text gradient animation in hero
-
-Staggered entrance animations
-
-Animations must remain subtle and professional.
-
-Do NOT over-animate the page.
-
-RESPONSIVENESS
-
-The website must be fully responsive.
-
-Desktop:
-Premium multi-column layout.
-
-Tablet:
-Adapt grids cleanly.
-
-Mobile:
-
-Collapsible hamburger menu
-
-Stacked hero
-
-Cards become vertical
-
-Large readable typography
-
-Touch-friendly buttons
-
-No horizontal scrolling
-
-ACCESSIBILITY
-
-Use:
-
-semantic HTML
-
-proper contrast
-
-keyboard navigation
-
-visible focus states
-
-aria labels where appropriate
-
-readable font sizes
-
-TECHNICAL REQUIREMENTS
-
-Use:
-
-Next.js + TypeScript + Tailwind CSS
-
-Use reusable components.
-
-Keep components modular:
-
-Navbar
-Hero
-TrustStrip
-ProblemSection
-FeatureCards
-HowItWorks
-CitationPreview
-JurisdictionSection
-PriorArtPreview
-CompliancePreview
-ImpactSection
-FinalCTA
-Footer
-
-Use Lucide React for icons.
-
-Do not use random emoji as primary UI icons.
-
-Use CSS gradients and subtle effects instead of excessive images.
-
-The page should be ready to connect to a real backend later.
-
-CTA buttons should route to:
-
-/assistant
-
-/prior-art
-
-/compliance
-
-/sources
-
-IMPORTANT
-
-The final result should NOT look like an AI-generated template.
-
-It should look like a real funded AI legal-tech / deep-tech startup product, designed for a national-level hackathon demo.
-
-Prioritize:
-visual hierarchy → trust → technical sophistication → clarity → usability.
-
-Make the first viewport exceptionally impressive because judges will see it first.
-
-Build the complete landing page, not just a hero section.
-
-This project was built with [Lovable](https://lovable.dev).
-
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/f6fa2803-6f02-5c44-85d6-69c109b1b65b).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
-
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
-
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
+# Run Locally
+Frontend
+npm install
 npm run dev
-```
+The development server will provide a local URL such as:
+
+http://localhost:8080/
+
+Backend
+cd backend
+pip install -r requirements.txt
+python -m uvicorn app.main:app --reload
+
+Backend API documentation:
+
+http://127.0.0.1:8000/docs
